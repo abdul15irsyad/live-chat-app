@@ -1,0 +1,76 @@
+/* global */
+html, body{
+  height: 100%;
+  background-color: rgb(243, 255, 189);
+  font-size: 95%;
+}
+.full-height{
+  height: 100%;
+}
+.full-width{
+  width: 100%;
+}
+img{
+  width: 100%;
+}
+
+/* container */
+/* .container{
+} */
+
+/* login */
+.enter-name{
+  background-color: rgb(243, 255, 189);
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.enter-name p.error{
+  visibility: hidden;
+  color: #ff4848;
+}
+
+/* user joined */
+.pil-user-joined{
+  background-color: #79baff;
+  border-radius: 60px;
+  padding-bottom: 2px;
+}
+.pil-user-joined.user-leaved{
+  background-color: #ff7979;
+}
+
+/* messages */
+.messages{
+  padding: 10px 0px;
+}
+.margin-div{
+  padding-bottom: 60px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  visibility: hidden;
+}
+.messages .message{
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+.messages .message.sender {
+  background-color: rgb(181, 241, 157);
+}
+
+/* form input */
+.form-group{
+  background-color: rgb(243, 255, 189);
+  padding: 10px 0px 15px;
+  margin: 0 auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
