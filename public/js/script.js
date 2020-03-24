@@ -1,5 +1,5 @@
 // make connection to socket
-let socket = io("http://localhost:8002")
+let socket = io("https://live-chat-app-abdul.herokuapp.com/")
 // enter name at first load
 let enterNameDiv = document.querySelector('.enter-name')
 // form input name in enter name
