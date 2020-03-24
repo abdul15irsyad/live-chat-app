@@ -12,6 +12,8 @@ const express = require('express'),
 require('dotenv').config()
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json());
+app.set('view engine','pug')
+app.set('views','./public/views')
 
 // port
 const port = process.env.PORT || 8002
@@ -20,43 +22,52 @@ const port = process.env.PORT || 8002
 app.use(express.static(__dirname+'/public'))
 
 // connect to mongodb with mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/io-chat", {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false
+},err=>{
+  if (err) throw err
+  console.log("success connect mongodb")
 })
 
 // homepage & routes
 app.get('/',(req,res)=>{
-  res.sendFile('index.html')
+  res.render('./index',{APP_URL:process.env.APP_URL})
 })
 app.use('/chat',chatRouter )
 
 // socket
-let users = {}
+let users = []
 io.on('connection',(socket)=>{
   socket.on('send-message',data=>{
-    socket.broadcast.emit('messages',{name:users[socket.id],message:data.message})
+    socket.broadcast.emit('messages',{name:users.find(user=>user.id==socket.id).name,message:data.message})
   })
   socket.on('input-name',data=>{
     let name = data.name.trim()
-    if(Object.values(users).indexOf(name)==-1){
-      users[socket.id] = name
+    if(users.indexOf(name)==-1){
+      let user = {
+        id: socket.id,
+        name: name
+      }
+      users.push(user)
       socket.broadcast.emit('user-joined',{name:name,users})
       socket.emit('success-joined',{name:name,users})
+      console.log(`${name} joined`)
     }else{
       socket.emit('failed-joined',{name})
     }
   })
   socket.on('disconnect',()=>{
-    let disconnectUser = users[socket.id]
-    if(users[socket.id]){
-      delete users[socket.id]
-      socket.broadcast.emit('user-disconnect',{name:disconnectUser,users})
+    let disconnectUser = users.find(user=>user.id==socket.id)
+    if(disconnectUser){
+      users = users.filter(user=>user.id!=socket.id)
+      socket.broadcast.emit('user-disconnect',{name:disconnectUser.name,users})
+      console.log(`${disconnectUser.name} leaved`)
     }
   })
 })
 
 // start the server
-server.listen(port,()=>console.log(`server running on http://localhost:${port}`))
+server.listen(port,()=>console.log(`server running on ${process.env.APP_URL}`))

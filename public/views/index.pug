@@ -1,0 +1,47 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Live Chat App
+  link(rel='stylesheet' href='css/bootstrap.min.css')
+  link(rel='stylesheet' href='css/style.css')
+.container.full-height
+  h1.text-center.pt-3.mb-0 Live Chat App
+  p.text-center.joined-users.mb-0 nobody joined
+  // enter name
+  .row.justify-content-center.enter-name.px-3
+    .col-md-4.col-10.text-center.mt-5
+      form#form-name
+        h5.mb-4(for='') Who are you?
+        input.form-control.input-name.text-center(type='text')
+        p.error.mb-0.mt-1 username is already used !
+        button.btn.btn-block.btn-primary.mt-2(type='submit') Join
+  // messages
+  .messages
+    // user joined
+    template.user-joined
+      .row.justify-content-center.my-2
+        .col-auto.pil-user-joined.px-3
+          p.mb-0
+    template.received-message
+      .row.mt-3
+        .col-auto.pl-5.pr-5
+          .message.px-3
+            h6.name.text-primary.mb-0
+            p.mb-0
+    template.send-message
+      .row.mt-3.justify-content-end
+        .col-auto.pl-5.pr-5.text-right
+          .message.sender.px-3
+            p.mb-0
+  .margin-div.bg-dark
+  form#form-message
+    .row.form-group.container
+      .col.pr-0
+        input.form-control.input-message(type='text')
+      .col-sm-2.col-3
+        button.btn.btn-block.btn-primary(type='submit') Send
+script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js')
+script.
+  let socket = io(`#{APP_URL}`)
+script(src='js/script.js')

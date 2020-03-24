@@ -1,5 +1,3 @@
-// make connection to socket
-let socket = io("http://localhost:8002")
 // enter name at first load
 let enterNameDiv = document.querySelector('.enter-name')
 // form input name in enter name
@@ -41,9 +39,9 @@ socket.on('success-joined',data=>{
   // appear after the last tag
   messageContainer.appendChild(userJoinedDiv)
   // change the title
-  document.title = `Live Chat App | ${Object.keys(data.users).length} people joined`
+  document.title = `Live Chat App - ${data.users.length} people`
   // update people joined
-  joinedUsersDiv.innerHTML = Object.keys(data.users).length + " people joined"
+  joinedUsersDiv.innerHTML = data.users.length + " people joined"
   // remove enter name html
   enterNameDiv.parentNode.removeChild(enterNameDiv)
   inputName.value = ""
@@ -103,9 +101,9 @@ socket.on('user-joined',data=>{
     // inform that someone joined
     username.innerHTML = data.name+" joined"
     // change title
-    document.title = `Live Chat App | ${Object.keys(data.users).length} people joined`
+    document.title = `Live Chat App - ${data.users.length} people`
     // update people joined
-    joinedUsersDiv.innerHTML = Object.keys(data.users).length + " people joined"
+    joinedUsersDiv.innerHTML = data.users.length + " people joined"
     messageContainer.appendChild(userJoinedDiv)
   }
 })
@@ -121,8 +119,9 @@ socket.on('user-disconnect',data=>{
     messageContainer.appendChild(userJoinedDiv)
     username.innerHTML = data.name+" leaved"
     // change title
-    document.title = `Live Chat App | ${Object.keys(data.users).length} people joined`
+    document.title = `Live Chat App - ${data.users.length} people`
     // update people joined
-    joinedUsersDiv.innerHTML = Object.keys(data.users).length + " people joined"
+    joinedUsersDiv.innerHTML = data.users.length + " people joined"
+    window.scrollTo(0,document.body.scrollHeight);
   }
 })
