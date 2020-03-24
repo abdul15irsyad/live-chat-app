@@ -1,5 +1,5 @@
 # Live Chat App
-![Live Chat App Page](url)
+![Live Chat App Page](https://github.com/abdul15irsyad/live-chat-app/blob/master/public/img/live-chat-app.png?raw=true)
 
 live chat app merupakan aplikasi chatting secara realtime, ini adalah aplikasi belajar saya mengenai socket.io dengan node js
 ## Installation
