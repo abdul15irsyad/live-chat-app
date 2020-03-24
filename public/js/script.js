@@ -1,5 +1,5 @@
 // make connection to socket
-let socket = io("https://live-chat-app-abdul.herokuapp.com/")
+let socket = io("http://localhost:8002")
 // enter name at first load
 let enterNameDiv = document.querySelector('.enter-name')
 // form input name in enter name
@@ -46,6 +46,7 @@ socket.on('success-joined',data=>{
   joinedUsersDiv.innerHTML = Object.keys(data.users).length + " people joined"
   // remove enter name html
   enterNameDiv.parentNode.removeChild(enterNameDiv)
+  inputName.value = ""
 })
 
 // failed joined

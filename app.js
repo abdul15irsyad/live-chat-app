@@ -9,6 +9,7 @@ const express = require('express'),
   Chat = require('./models/Chat')
 
 // config
+require('dotenv').config()
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json());
 
