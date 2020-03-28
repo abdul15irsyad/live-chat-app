@@ -9,12 +9,11 @@ git clone https://github.com/abdul15irsyad/live-chat-app.git
 cd live-chat-app
 npm install
 ```
-2. buat sebuah `.env` file yang isinya variable `PORT`, `APP_URL`, dan `MONGO_URL`
-3. saya menggunakan package manager [npm](https://www.npmjs.com/) untuk mengatur package saya, install semua dependecies yang ada kemudian jalankan aplikasi dengan `npm start`
+2. saya menggunakan package manager [npm](https://www.npmjs.com/) untuk mengatur package saya, install semua dependecies yang ada kemudian jalankan aplikasi dengan `npm start`
 ```bash
 npm start
 ```
-4. open browser at [http://localhost:8002](http://localhost:8002)
+3. open browser at [http://localhost:8002](http://localhost:8002)
 ## Try it without install/clone
 saya deploy aplikasi menggunakan [heroku](https://www.heroku.com) cli, [Live Chat App](https://live-chat-app-abdul.herokuapp.com)
 

@@ -15,14 +15,16 @@ app.use(bodyParser.json());
 app.set('view engine','pug')
 app.set('views','./public/views')
 
-// port
-const port = process.env.PORT || 8002
+// env
+let port = process.env.PORT || 8002
+let app_url = process.env.APP_URL || `http://localhost:${port}`
+let mongo_url = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/io-chat'
 
 // static file path
 app.use(express.static(__dirname+'/public'))
 
 // connect to mongodb with mongoose
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(mongo_url, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -34,7 +36,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 // homepage & routes
 app.get('/',(req,res)=>{
-  res.render('./index',{APP_URL:process.env.APP_URL})
+  res.render('./index',{APP_URL:app_url})
 })
 app.use('/chat',chatRouter )
 
@@ -70,4 +72,4 @@ io.on('connection',(socket)=>{
 })
 
 // start the server
-server.listen(port,()=>console.log(`server running on ${process.env.APP_URL}`))
+server.listen(port,()=>console.log(`server running on ${app_url}`))
