@@ -3,10 +3,11 @@
 
 live chat app merupakan aplikasi chatting secara realtime, ini adalah aplikasi belajar saya mengenai socket.io dengan node js
 ## Installation
-1. clone the repo (in terminal or bash)
+1. clone the repo (in terminal or bash) kemudian `npm install` untuk install semua dependencies
 ```bash
 git clone https://github.com/abdul15irsyad/live-chat-app.git
 cd live-chat-app
+npm install
 ```
 2. buat sebuah `.env` file yang isinya variable `PORT`, `APP_URL`, dan `MONGO_URL`
 3. saya menggunakan package manager [npm](https://www.npmjs.com/) untuk mengatur package saya, install semua dependecies yang ada kemudian jalankan aplikasi dengan `npm start`
